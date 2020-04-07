@@ -1,7 +1,6 @@
 import airport_project.planes.ExperimentalPlane;
 import airport_project.Airport;
 import airport_project.models.ClassificationLevel;
-import airport_project.models.ExperimentalTypes;
 import airport_project.models.MilitaryType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -13,7 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AirportTest {
-    static List<PassengerPlane> passengerPlanes = Arrays.asList(
+
+    static List<Plane> planes = Arrays.asList(
             new PassengerPlane("Boeing-737", 900, 12000, 60500, 164),
             new PassengerPlane("Boeing-737-800", 940, 12300, 63870, 192),
             new PassengerPlane("Boeing-747", 980, 16100, 70500, 242),
@@ -21,10 +21,7 @@ public class AirportTest {
             new PassengerPlane("Airbus A330", 990, 14800, 80500, 222),
             new PassengerPlane("Embraer 190", 870, 8100, 30800, 64),
             new PassengerPlane("Sukhoi Superjet 100", 870, 11500, 50500, 140),
-            new PassengerPlane("Bombardier CS300", 920, 11000, 60700, 196)
-    );
-
-    static List<MilitaryPlane> militaryPlanes = Arrays.asList(
+            new PassengerPlane("Bombardier CS300", 920, 11000, 60700, 196),
             new MilitaryPlane("B-1B Lancer", 1050, 21000, 80000, MilitaryType.BOMBER),
             new MilitaryPlane("B-2 Spirit", 1030, 22000, 70000, MilitaryType.BOMBER),
             new MilitaryPlane("B-52 Stratofortress", 1000, 20000, 80000, MilitaryType.BOMBER),
@@ -33,34 +30,25 @@ public class AirportTest {
             new MilitaryPlane("C-130 Hercules", 650, 5000, 110000, MilitaryType.TRANSPORT)
     );
 
-
     private static PassengerPlane planeWithMaxPassengerCapacity = new PassengerPlane("Boeing-747", 980, 16100, 70500, 242);
 
     @Test
     public void testGetTransportMilitaryPlanes() {
-        MilitaryPlane militaryPlane = new MilitaryPlane(militaryPlanes);
+        MilitaryPlane militaryPlane = (MilitaryPlane) new MilitaryPlane().getMilitaryPlanes(planes);
         List<MilitaryPlane> transportMilitaryPlanes = militaryPlane.getTransportMilitaryPlanes();
-        boolean flag = false;
-        for (militaryPlane : transportMilitaryPlanes) {
-            if ((militaryPlane.getType() == MilitaryType.TRANSPORT)) {
-                flag = true;
-                break;
-            }
-        }
-        Assert.assertTrue(flag);
+        Assert.assertTrue(militaryPlane.isMilitaryPlanesPresent(transportMilitaryPlanes));
     }
 
     @Test
     public void testGetPassengerPlaneWithMaxCapacity() {
-        System.out.println("TEST testGetPassengerPlaneWithMaxCapacity started!");
-        Airport airport = new Airport(planes);
-        PassengerPlane expectedPlaneWithMaxPassengersCapacity = airport.getPassengerPlaneWithMaxPassengersCapacity();
-        Assert.assertTrue(expectedPlaneWithMaxPassengersCapacity.equals(planeWithMaxPassengerCapacity));
+        PassengerPlane passengerPlane = (PassengerPlane) new PassengerPlane().getPassengerPlanes(planes);
+        PassengerPlane expectedPlaneWithMaxPassengersCapacity = passengerPlane.getPassengerPlaneWithMaxPassengersCapacity();
+        Assert.assertEquals(expectedPlaneWithMaxPassengersCapacity, planeWithMaxPassengerCapacity);
     }
 
     @Test
     public void test3() {
-        Airport airport = new Airport(planes);
+        Airport airport = new Airport();
         airport.sortByMaxLoadCapacity();
         List<? extends Plane> planesSortedByMaxLoadCapacity = airport.getPlanes();
 
@@ -89,7 +77,6 @@ public class AirportTest {
                 Assert.fail("Test failed!");
             }
         }
-        // if not failed
     }
 
     @Test

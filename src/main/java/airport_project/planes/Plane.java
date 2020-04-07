@@ -51,7 +51,7 @@ public abstract class Plane extends Airport {
         return model;
     }
 
-    public int getMS() {
+    public int getMaxSpeed() {
         return maxSpeed;
     }
 

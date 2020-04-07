@@ -21,7 +21,7 @@ public class Airport {
     }
 
     public Airport sortByMaxSpeed() {
-        Collections.sort(planes, (o1, o2) -> o1.getMS() - o2.getMS());
+        Collections.sort(planes, (o1, o2) -> o1.getMaxSpeed() - o2.getMaxSpeed());
         return this;
     }
 

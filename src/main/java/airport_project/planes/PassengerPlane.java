@@ -10,6 +10,10 @@ public class PassengerPlane extends Plane {
     private int passengersCapacity;
     private List<Plane> planes;
 
+    public PassengerPlane() {
+
+    }
+
     public PassengerPlane(List<PassengerPlane> passengerPlanes) {
 
     }
@@ -42,7 +46,7 @@ public class PassengerPlane extends Plane {
         return passengersCapacity;
     }
 
-    public List<PassengerPlane> getPassengerPlanes() {
+    public List<PassengerPlane> getPassengerPlanes(List<Plane> planes) {
         List<Plane> l = this.planes;
         List<PassengerPlane> x = new ArrayList<>();
         for (Plane p : l) {
