@@ -57,8 +57,8 @@ public class PassengerPlane extends Plane {
         return x;
     }
 
-    public PassengerPlane getPassengerPlaneWithMaxPassengersCapacity() {
-        List<PassengerPlane> passengerPlanes = getPassengerPlanes();
+    public PassengerPlane getPassengerPlaneWithMaxPassengersCapacity(List<Plane> planes) {
+        List<PassengerPlane> passengerPlanes = getPassengerPlanes(planes);
         PassengerPlane planeWithMaxCapacity = passengerPlanes.get(0);
         for (int i = 0; i < passengerPlanes.size(); i++) {
             if (passengerPlanes.get(i).getPassengersCapacity() > planeWithMaxCapacity.getPassengersCapacity()) {

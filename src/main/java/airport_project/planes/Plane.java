@@ -12,9 +12,11 @@ public abstract class Plane extends Airport {
     private int maxLoadCapacity;
 
     public Plane() {
+
     }
 
     public Plane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity) {
+        super();
         this.model = model;
         this.maxSpeed = maxSpeed;
         this.maxFlightDistance = maxFlightDistance;

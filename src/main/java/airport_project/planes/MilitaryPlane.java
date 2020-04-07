@@ -11,7 +11,7 @@ public class MilitaryPlane extends Plane {
     private MilitaryType type;
 
     public MilitaryPlane() {
-
+        super();
     }
 
     public MilitaryPlane (List<Plane> planes) {

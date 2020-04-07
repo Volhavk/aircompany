@@ -15,6 +15,14 @@ public class Airport {
 
     private List<Plane> planes;
 
+    public Airport() {
+
+    }
+
+    public Airport(List<Plane> planes){
+
+    }
+
     public Airport sortByMaxDistance() {
         Collections.sort(planes, (o1, o2) -> o1.getMaxFlightDistance() - o2.getMaxFlightDistance());
         return this;

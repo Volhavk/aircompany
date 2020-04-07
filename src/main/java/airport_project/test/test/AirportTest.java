@@ -48,10 +48,11 @@ public class AirportTest {
 
     @Test
     public void test3() {
-        Airport airport = new Airport();
+        Airport airport = new Airport(planes);
         airport.sortByMaxLoadCapacity();
-        List<? extends Plane> planesSortedByMaxLoadCapacity = airport.getPlanes();
+        List<Plane> planesSortedByMaxLoadCapacity = airport.getPlanes();
 
+//        boolean nextPlaneMaxLoadCapacityIsHigherThanCurrent = true;
         boolean nextPlaneMaxLoadCapacityIsHigherThanCurrent = true;
         for (int i = 0; i < planesSortedByMaxLoadCapacity.size() - 1; i++) {
             Plane currentPlane = planesSortedByMaxLoadCapacity.get(i);
@@ -66,12 +67,11 @@ public class AirportTest {
 
     @Test
     public void testHasAtLeastOneBomberInMilitaryPlanes() {
+        MilitaryPlane militaryPlane = (MilitaryPlane) new MilitaryPlane().getMilitaryPlanes(planes);
         Airport airport = new Airport(planes);
-        List<MilitaryPlane> bomberMilitaryPlanes = airport.getBomberMilitaryPlanes();
-        boolean flag = false;
-        for (MilitaryPlane militaryPlane : bomberMilitaryPlanes) {
+        List<MilitaryPlane> bomberMilitaryPlanes = militaryPlane.getBomberMilitaryPlanes();
+        for (militaryPlane : bomberMilitaryPlanes) {
             if ((militaryPlane.getType() == MilitaryType.BOMBER)) {
-                flag = true;
             }
             else {
                 Assert.fail("Test failed!");
@@ -82,9 +82,9 @@ public class AirportTest {
     @Test
     public void testExperimentalPlanesHasClassificationLevelHigherThanUnclassified(){
         Airport airport = new Airport(planes);
-        List<ExperimentalPlane> ExperimentalPlanes = airport.getExperimentalPlanes();
+        List<ExperimentalPlane> experimentalPlanes = airport.getExperimentalPlanes();
         boolean hasUnclassifiedPlanes = false;
-        for(ExperimentalPlane experimentalPlane : ExperimentalPlanes){
+        for(ExperimentalPlane experimentalPlane : experimentalPlanes){
             if(experimentalPlane.getClassificationLevel() == ClassificationLevel.UNCLASSIFIED){
                 hasUnclassifiedPlanes = true;
                 break;
