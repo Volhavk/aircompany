@@ -1,8 +1,5 @@
 package airport_project;
 
-import airport_project.planes.ExperimentalPlane;
-import airport_project.planes.MilitaryPlane;
-import airport_project.planes.PassengerPlane;
 import airport_project.planes.Plane;
 
 import java.util.*;
@@ -14,6 +11,8 @@ import java.util.*;
 public class Airport {
 
     private List<Plane> planes;
+    Plane currentPlane;
+    Plane nextPlane;
 
     public Airport() {
 
@@ -47,6 +46,14 @@ public class Airport {
 
     public List<Plane> getPlanes() {
         return planes;
+    }
+
+    public boolean isNextPlaneMaxLoadCapacityIsHigherThanCurrent() {
+        List<Plane> planesSortedByMaxLoadCapacity = this.getPlanes();
+        for (int i = 0; i < planesSortedByMaxLoadCapacity.size() - 1; i++) {
+            currentPlane = planesSortedByMaxLoadCapacity.get(i);
+            nextPlane = planesSortedByMaxLoadCapacity.get(i + 1);
+        } return currentPlane.getMinLoadCapacity() > nextPlane.getMinLoadCapacity();
     }
 
 }

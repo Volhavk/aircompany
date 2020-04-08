@@ -1,7 +1,6 @@
 package airport_project.planes;
 
 import airport_project.Airport;
-
 import java.util.Objects;
 
 public abstract class Plane extends Airport {

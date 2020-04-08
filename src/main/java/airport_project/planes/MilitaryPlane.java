@@ -14,8 +14,6 @@ public class MilitaryPlane extends Plane {
         super();
     }
 
-    public MilitaryPlane (List<Plane> planes) {
-    }
 
     public MilitaryPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, MilitaryType type) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
@@ -48,7 +46,6 @@ public class MilitaryPlane extends Plane {
     public MilitaryType getType() {
         return type;
     }
-
 
     public List<MilitaryPlane> getMilitaryPlanes(List<Plane> planes) {
         List<MilitaryPlane> militaryPlanes = new ArrayList<>();

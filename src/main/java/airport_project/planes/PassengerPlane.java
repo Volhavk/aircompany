@@ -1,7 +1,6 @@
 package airport_project.planes;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,10 +10,6 @@ public class PassengerPlane extends Plane {
     private List<Plane> planes;
 
     public PassengerPlane() {
-
-    }
-
-    public PassengerPlane(List<PassengerPlane> passengerPlanes) {
 
     }
 
@@ -46,7 +41,7 @@ public class PassengerPlane extends Plane {
         return passengersCapacity;
     }
 
-    public List<PassengerPlane> getPassengerPlanes(List<Plane> planes) {
+    public List<PassengerPlane> getPassengerPlanes() {
         List<Plane> l = this.planes;
         List<PassengerPlane> x = new ArrayList<>();
         for (Plane p : l) {
@@ -57,8 +52,8 @@ public class PassengerPlane extends Plane {
         return x;
     }
 
-    public PassengerPlane getPassengerPlaneWithMaxPassengersCapacity(List<Plane> planes) {
-        List<PassengerPlane> passengerPlanes = getPassengerPlanes(planes);
+    public PassengerPlane getPassengerPlaneWithMaxPassengersCapacity() {
+        List<PassengerPlane> passengerPlanes = getPassengerPlanes();
         PassengerPlane planeWithMaxCapacity = passengerPlanes.get(0);
         for (int i = 0; i < passengerPlanes.size(); i++) {
             if (passengerPlanes.get(i).getPassengersCapacity() > planeWithMaxCapacity.getPassengersCapacity()) {

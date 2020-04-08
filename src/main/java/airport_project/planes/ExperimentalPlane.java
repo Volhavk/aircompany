@@ -1,7 +1,6 @@
 package airport_project.planes;
 
 import airport_project.models.ClassificationLevel;
-import airport_project.models.ExperimentalTypes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +10,13 @@ public class ExperimentalPlane extends Plane {
 
     private ClassificationLevel classificationLevel;
     private List<Plane> planes;
+    boolean hasUnclassifiedPlanes;
 
-    public ExperimentalPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, ExperimentalTypes experimentalTypes, ClassificationLevel classificationLevel) {
+    public ExperimentalPlane(List planes) {
+
+    }
+
+    public ExperimentalPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, ClassificationLevel classificationLevel) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
         this.classificationLevel = classificationLevel;
     }
@@ -34,6 +38,15 @@ public class ExperimentalPlane extends Plane {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), classificationLevel);
+    }
+
+    public boolean isHasUnclassifiedPlanes() {
+        List<ExperimentalPlane> experimentalPlanes = this.getExperimentalPlanes();
+        for (ExperimentalPlane experimentalPlane : experimentalPlanes) {
+            if (experimentalPlane.getClassificationLevel() == ClassificationLevel.UNCLASSIFIED) {
+                return true;
+            }
+        } return this.getClassificationLevel() == ClassificationLevel.UNCLASSIFIED;
     }
 
     public ClassificationLevel getClassificationLevel() {
