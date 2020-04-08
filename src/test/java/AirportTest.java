@@ -1,14 +1,15 @@
-import airport_project.planes.ExperimentalPlane;
-import airport_project.Airport;
-import airport_project.models.MilitaryType;
+import airport.project.planes.ExperimentalPlane;
+import airport.project.Airport;
+import airport.project.models.MilitaryType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import airport_project.planes.MilitaryPlane;
-import airport_project.planes.PassengerPlane;
-import airport_project.planes.Plane;
+import airport.project.planes.MilitaryPlane;
+import airport.project.planes.PassengerPlane;
+import airport.project.planes.Plane;
 
 import java.util.Arrays;
 import java.util.List;
+
 
 public class AirportTest {
 
@@ -33,7 +34,8 @@ public class AirportTest {
 
     @Test
     public void testGetTransportMilitaryPlanes() {
-        MilitaryPlane militaryPlane = (MilitaryPlane) new MilitaryPlane().getMilitaryPlanes(planes);
+        MilitaryPlane militaryPlane = new MilitaryPlane("F-22", 1550, 13000, 11000, MilitaryType.TRANSPORT);
+        List<MilitaryPlane> planesUnderTest = militaryPlane.getMilitaryPlanes(planes);
         List<MilitaryPlane> transportMilitaryPlanes = militaryPlane.getTransportMilitaryPlanes();
         Assert.assertTrue(militaryPlane.isMilitaryPlanesPresent(transportMilitaryPlanes));
     }
